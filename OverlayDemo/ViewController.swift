@@ -11,15 +11,49 @@ import UIKit
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            
+            let controller = UIViewController()
+            
+            controller.view.frame = UIApplication.shared.statusBarFrame
+            
+            controller.view.backgroundColor = UIColor.blue
+            
+            appDelegate.customStatusBar = CustomStatusBar()
+            
+            appDelegate.customStatusBar?.isHidden = false
+            
+        }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            
+            appDelegate.customStatusBar?.isHidden = true
+            
+        }
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext) in
+            
+            
+            
+        }) { (context: UIViewControllerTransitionCoordinatorContext) in
+            
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                
+                appDelegate.customStatusBar?.isHidden = false
+                
+            }
+            
+        }
+        
     }
-
 
 }
-

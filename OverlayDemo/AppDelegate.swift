@@ -8,11 +8,14 @@
 
 import UIKit
 
+var custom_overlay_statusbar = "me.soocii.custom.statusbar"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var customStatusBar: CustomStatusBar?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
